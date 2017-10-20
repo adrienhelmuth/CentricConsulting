@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CentricConsulting.Models
@@ -64,6 +65,7 @@ namespace CentricConsulting.Models
 
     public class RegisterViewModel
     {
+        [Key]
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +81,8 @@ namespace CentricConsulting.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel
