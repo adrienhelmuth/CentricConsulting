@@ -19,25 +19,25 @@ namespace CentricConsulting.Controllers
         // GET: userDetails
         public ActionResult Index(string searchString)
         {
-            var testusers = from u in db.userDetails select u;
-            if (!String.IsNullOrEmpty(searchString))
+
+            if (User.Identity.IsAuthenticated)
             {
-                testusers = testusers.Where(u => u.lastName.Contains(searchString)
-              || u.firstName.Contains(searchString));
-                // if here, users were found so view them
-                return View(testusers.ToList());
+                var testusers = from u in db.userDetails select u;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    testusers = testusers.Where(u => u.lastName.Contains(searchString)
+                  || u.firstName.Contains(searchString));
+                    // if here, users were found so view them
+                    return View(testusers.ToList());
+                }
+
+                return View(db.userDetails.ToList());
+            }
+            else
+            {
+                return View("PleaseLogIn");
             }
 
-            return View(db.userDetails.ToList());
-
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    return View(db.userDetails.ToList());
-            //}
-            //else
-            //{
-            //    return View("PleaseLogIn");
-            //}
         }
 
 
@@ -144,7 +144,19 @@ namespace CentricConsulting.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userDetails);
+            
+
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (userDetails.ID == memberID)
+            {
+                return View(userDetails);
+            }
+            else
+            {
+                return View("NotAllowedToDelete");
+                //return View("NotAuthenticated");
+            }
         }
 
         // POST: userDetails/Delete/5
