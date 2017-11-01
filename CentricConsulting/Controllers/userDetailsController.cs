@@ -17,21 +17,33 @@ namespace CentricConsulting.Controllers
         private CentricContext db = new CentricContext();
 
         // GET: userDetails
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            if (User.Identity.IsAuthenticated)
+            var testusers = from u in db.userDetails select u;
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return View(db.userDetails.ToList());
+                testusers = testusers.Where(u => u.lastName.Contains(searchString)
+              || u.firstName.Contains(searchString));
+                // if here, users were found so view them
+                return View(testusers.ToList());
             }
-            else
-            {
-                return View("NotAuthenticated");
-            }
-            
+
+            return View(db.userDetails.ToList());
+
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return View(db.userDetails.ToList());
+            //}
+            //else
+            //{
+            //    return View("PleaseLogIn");
+            //}
         }
 
-        // GET: userDetails/Details/5
-        public ActionResult Details(Guid? id)
+
+
+            // GET: userDetails/Details/5
+            public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
