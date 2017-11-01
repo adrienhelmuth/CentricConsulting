@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricConsulting.DALContext;
 using CentricConsulting.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricConsulting.Controllers
 {
@@ -18,7 +19,15 @@ namespace CentricConsulting.Controllers
         // GET: userDetails
         public ActionResult Index()
         {
-            return View(db.userDetails.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(db.userDetails.ToList());
+            }
+            else
+            {
+                return View("NotAuthenticated");
+            }
+            
         }
 
         // GET: userDetails/Details/5
@@ -51,10 +60,18 @@ namespace CentricConsulting.Controllers
         {
             if (ModelState.IsValid)
             {
-                userDetails.ID = Guid.NewGuid();
+                Guid memberID;
+                Guid.TryParse(User.Identity.GetUserId(), out memberID);
+                userDetails.ID = memberID;
                 db.userDetails.Add(userDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
+
+                //userDetails.ID = Guid.NewGuid();
+                //db.userDetails.Add(userDetails);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
 
             return View(userDetails);
@@ -72,7 +89,19 @@ namespace CentricConsulting.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userDetails);
+
+            Guid memberID;
+            Guid.TryParse(User.Identity.GetUserId(), out memberID);
+            if (userDetails.ID == memberID)
+            {
+                return View(userDetails);
+            }
+            else
+            {
+                return View("NotAllowed");
+                //return View("NotAuthenticated");
+            }
+
         }
 
         // POST: userDetails/Edit/5
