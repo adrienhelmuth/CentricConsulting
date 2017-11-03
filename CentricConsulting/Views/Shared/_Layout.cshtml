@@ -9,6 +9,7 @@
 
 </head>
 <body>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,7 +23,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Centric Employees", "Index", "userDetails")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My Recognition App  <div </div> <img src="https://clehousinghack.org/Pics/Centric.jpeg" style="width:10%">
+            <p>&copy; @DateTime.Now.Year - My Recognition App  <div </div> <img src="https://www.valet.io/wp-content/themes/valet/assets/images/case-studies/centric/centric-logo.png" style="width:20%">
     </div></a></div></p>
 
     </footer>
