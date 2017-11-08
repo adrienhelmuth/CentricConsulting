@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-header .icon-bar {
+    display:block;
+    width:22px;
+    height:2px;
+    border-radius:1px;
+}
