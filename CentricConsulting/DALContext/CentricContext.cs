@@ -21,6 +21,7 @@ namespace CentricConsulting.DALContext
         }
 
         public DbSet<userDetails> userDetails { get; set; }
+        public DbSet<Recognition> Recognition { get; set; }
 
     }
 }
