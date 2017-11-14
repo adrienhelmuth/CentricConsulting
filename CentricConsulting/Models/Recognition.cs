@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,18 +9,28 @@ namespace CentricConsulting.Models
 {
     public class Recognition
     {
+        [Display(Name = "Date Recognition is Given")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime CurentDateTime { get; set; }
+        [Display(Name = "Comments")]
+        public string RecognitionComments { get; set; }
 
+        [Display(Name = "Employee Giving Recognition")]
+        [Required]
+        public Guid EmployeeGivingRecog { get; set; }
 
+        [ForeignKey("EmployeeGivingRecog")]
+        public virtual userDetails Giver { get; set; }
+        [Required]
 
-        public int ID { get; set; }
-        [Display(Name = "Core value recognized")]
+        [Display(Name = "Employee Being Recognized")]
+        public Guid ID { get; set; }
+
+        [ForeignKey("ID")]
+        public virtual userDetails userDetails { get; set; }
         public CoreValue award { get; set; }
-        [Display(Name = "Person giving the recognition")]
-        public string recognizor { get; set; }
-        [Display(Name = "Person receiving the recognition")]
-        public string recognized { get; set; }
-        [Display(Name = "Date recognition given")]
-        public DateTime recognizationDate { get; set; }
+
         public enum CoreValue
         {
             Commit_to_Delivery_Excellence = 1,
