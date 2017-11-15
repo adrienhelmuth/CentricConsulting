@@ -19,16 +19,12 @@ namespace CentricConsulting.Models
         [Display(Name = "Employee Giving Recognition")]
         [Required]
         public Guid EmployeeGivingRecog { get; set; }
-
+        public Guid ID { get; set; }
         [ForeignKey("EmployeeGivingRecog")]
         public virtual userDetails Giver { get; set; }
         [Required]
-
         [Display(Name = "Employee Being Recognized")]
-        public Guid ID { get; set; }
-
-        [ForeignKey("ID")]
-        public virtual userDetails userDetails { get; set; }
+        public virtual userDetails Reciever { get; set; }
         public CoreValue award { get; set; }
 
         public enum CoreValue
