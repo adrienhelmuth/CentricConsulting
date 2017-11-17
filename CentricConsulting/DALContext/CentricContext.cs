@@ -13,7 +13,7 @@ namespace CentricConsulting.DALContext
 {
     public class CentricContext : DbContext
     {
-
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) { modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>(); }
         public CentricContext() : base("name=DefaultConnection")
         {
 
@@ -24,4 +24,5 @@ namespace CentricConsulting.DALContext
         public DbSet<Recognition> Recognition { get; set; }
 
     }
+    
 }
