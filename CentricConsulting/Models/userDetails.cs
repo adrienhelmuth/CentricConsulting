@@ -38,6 +38,6 @@ namespace CentricConsulting.Models
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime hireDate { get; set; }
 
-
+        public string fullName { get { return lastName + ", " + firstName; } }
     }
 }

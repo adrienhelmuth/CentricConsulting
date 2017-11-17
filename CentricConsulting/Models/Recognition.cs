@@ -9,6 +9,8 @@ namespace CentricConsulting.Models
 {
     public class Recognition
     {
+        public int EmployeeRecognitionID { get; set; }
+
         [Display(Name = "Date Recognition is Given")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
@@ -27,6 +29,10 @@ namespace CentricConsulting.Models
         public virtual userDetails Reciever { get; set; }
         public CoreValue award { get; set; }
 
+        [ForeignKey("ID")]
+        public virtual userDetails UserDetails { get; set; }
+
+       
         public enum CoreValue
         {
             Commit_to_Delivery_Excellence = 1,

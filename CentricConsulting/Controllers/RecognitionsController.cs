@@ -18,7 +18,7 @@ namespace CentricConsulting.Controllers
         // GET: Recognitions
         public ActionResult Index()
         {
-            var recognition = db.Recognition.Include(r => r.Giver);
+            var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.UserDetails);
             return View(recognition.ToList());
         }
 
@@ -40,7 +40,8 @@ namespace CentricConsulting.Controllers
         // GET: Recognitions/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "Email");
+            ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "fullName");
+            ViewBag.ID = new SelectList(db.userDetails, "ID", "fullName");
             return View();
         }
 
@@ -59,7 +60,8 @@ namespace CentricConsulting.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "Email", recognition.EmployeeGivingRecog);
+            ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "fullName", recognition.EmployeeGivingRecog);
+            ViewBag.ID = new SelectList(db.userDetails, "ID", "fullName", recognition.ID);
             return View(recognition);
         }
 
@@ -76,6 +78,7 @@ namespace CentricConsulting.Controllers
                 return HttpNotFound();
             }
             ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "Email", recognition.EmployeeGivingRecog);
+            ViewBag.ID = new SelectList(db.userDetails, "ID", "Email", recognition.ID);
             return View(recognition);
         }
 
@@ -93,6 +96,7 @@ namespace CentricConsulting.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "Email", recognition.EmployeeGivingRecog);
+            ViewBag.ID = new SelectList(db.userDetails, "ID", "Email", recognition.ID);
             return View(recognition);
         }
 
