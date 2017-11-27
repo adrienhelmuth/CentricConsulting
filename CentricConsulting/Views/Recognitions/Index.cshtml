@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Giver.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserDetails.Email)
+            @Html.DisplayNameFor(model => model.userDetails.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CurentDateTime)
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Giver.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserDetails.Email)
+            @Html.DisplayFor(modelItem => item.userDetails.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CurentDateTime)
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.award)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeRecognitionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeRecognitionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeRecognitionID })
         </td>
     </tr>
 }

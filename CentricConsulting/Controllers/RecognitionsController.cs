@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using CentricConsulting.DALContext;
 using CentricConsulting.Models;
-using Microsoft.AspNet.Identity;
 
 namespace CentricConsulting.Controllers
 {
@@ -19,12 +18,12 @@ namespace CentricConsulting.Controllers
         // GET: Recognitions
         public ActionResult Index()
         {
-            var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.UserDetails);
+            var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.userDetails);
             return View(recognition.ToList());
         }
 
         // GET: Recognitions/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,11 +50,10 @@ namespace CentricConsulting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CurentDateTime,RecognitionComments,EmployeeGivingRecog,award")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "EmployeeRecognitionID,CurentDateTime,RecognitionComments,EmployeeGivingRecog,ID,award")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
-                recognition.ID = Guid.NewGuid();
                 db.Recognition.Add(recognition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -67,7 +65,7 @@ namespace CentricConsulting.Controllers
         }
 
         // GET: Recognitions/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -88,7 +86,7 @@ namespace CentricConsulting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CurentDateTime,RecognitionComments,EmployeeGivingRecog,award")] Recognition recognition)
+        public ActionResult Edit([Bind(Include = "EmployeeRecognitionID,CurentDateTime,RecognitionComments,EmployeeGivingRecog,ID,award")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +100,7 @@ namespace CentricConsulting.Controllers
         }
 
         // GET: Recognitions/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -119,7 +117,7 @@ namespace CentricConsulting.Controllers
         // POST: Recognitions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Recognition recognition = db.Recognition.Find(id);
             db.Recognition.Remove(recognition);
