@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricConsulting.DALContext;
 using CentricConsulting.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricConsulting.Controllers
 {
