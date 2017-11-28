@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CentricConsulting.DALContext;
 using CentricConsulting.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CentricConsulting.Controllers
 {
@@ -16,10 +17,28 @@ namespace CentricConsulting.Controllers
         private CentricContext db = new CentricContext();
 
         // GET: Recognitions
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.userDetails);
-            return View(recognition.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                var testusers = from r in db.Recognition select r;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    testusers = testusers.Where(r => r.RecognitionComments.Contains(searchString));
+                    //|| r.userDetails.Contains(searchString));
+                    // if here, users were found so view them
+                    return View(testusers.ToList());
+                }
+
+                return View(db.Recognition.ToList());
+            }
+            else
+            {
+                return View("PleaseLogInToView");
+            }
+
+            //var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.userDetails);
+            //return View(recognition.ToList());
         }
 
         // GET: Recognitions/Details/5
@@ -79,6 +98,7 @@ namespace CentricConsulting.Controllers
             ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "Email", recognition.EmployeeGivingRecog);
             ViewBag.ID = new SelectList(db.userDetails, "ID", "Email", recognition.ID);
             return View(recognition);
+
         }
 
         // POST: Recognitions/Edit/5

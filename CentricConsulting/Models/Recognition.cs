@@ -17,7 +17,7 @@ namespace CentricConsulting.Models
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime CurentDateTime { get; set; }
 
-
+        [Required]
         [Display(Name = "Comments")]
         public string RecognitionComments { get; set; }
 
