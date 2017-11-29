@@ -57,6 +57,7 @@ namespace CentricConsulting.Controllers
         }
 
         // GET: Recognitions/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.EmployeeGivingRecog = new SelectList(db.userDetails, "ID", "fullName");
@@ -84,7 +85,7 @@ namespace CentricConsulting.Controllers
         }
 
         // GET: Recognitions/Edit/5
-        public ActionResult Edit(int? id)
+                public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -120,6 +121,7 @@ namespace CentricConsulting.Controllers
         }
 
         // GET: Recognitions/Delete/5
+       
         public ActionResult Delete(int? id)
         {
             if (id == null)
