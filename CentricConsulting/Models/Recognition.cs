@@ -38,8 +38,6 @@ namespace CentricConsulting.Models
 
         public CoreValue award { get; set; }
 
-
-
         public enum CoreValue
         {
             Commit_to_Delivery_Excellence = 1,
