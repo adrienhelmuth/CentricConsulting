@@ -37,9 +37,54 @@ namespace CentricConsulting.Controllers
                 return View("PleaseLogInToView");
             }
 
+            //var Recognition = db.Recognition.Include(r => r.userDetails).Include(r => r.award).Include(r => r.Giver);
+
+            //if (id != null)
+            //{
+            //    Recognition = db.Recognition.Where(r=> r.ID == id).Include(r => r.userDetails).Include(r => r.award).Include(r => r.Giver);
+            //    ViewBag.Awardee = emp;
+            //    var awards = (from aw in Recognition
+            //                  group aw by new
+            //                  { r = aw.userDetails.ID, a = aw.award } into g
+            //                  select new
+            //                  { receiverID = g.Key.r, awardID = g.Key.a, AwardCount = g.Count() });
+            //    ViewBag.AwardList = awards.ToList();
+
+            //    return View("Awards");
+            //}
+            //else
+            //{
+            //    return View(Recognition.ToList());
+            //}
+
             //var recognition = db.Recognition.Include(r => r.Giver).Include(r => r.userDetails);
             //return View(recognition.ToList());
         }
+
+        public ActionResult Awards(Guid? id, string emp)
+        {
+            var Recognition = db.Recognition.Include(r => r.userDetails).Include(r => r.award).Include(r => r.Giver);
+
+            if (id != null)
+            {
+                Recognition = db.Recognition.Where(r => r.ID == id).Include(r => r.userDetails).Include(r => r.award).Include(r => r.Giver);
+                ViewBag.Awardee = emp;
+                var awards = (from aw in Recognition
+                              group aw by new
+                              { r = aw.userDetails.ID, a = aw.award } into g
+                              select new
+                              { receiverID = g.Key.r, awardID = g.Key.a, AwardCount = g.Count() });
+                ViewBag.AwardList = awards.ToList();
+
+                return View("Awards");
+            }
+            else
+            {
+                return View(Recognition.ToList());
+            }
+
+        }
+
 
         // GET: Recognitions/Details/5
         public ActionResult Details(int? id)

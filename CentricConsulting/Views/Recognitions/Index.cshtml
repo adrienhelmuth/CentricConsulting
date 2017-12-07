@@ -46,7 +46,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.award)
         </td>
-        <td>
+        <td>  
+            @Html.ActionLink("Show Individual Recognitions", "Awards", new { id = item.ID, emp = item.Giver.fullName })
+            
             @*@Html.ActionLink("Edit", "Edit", new { id = item.EmployeeRecognitionID }) |
             @Html.ActionLink("Details", "Details", new { id=item.EmployeeRecognitionID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeRecognitionID }) |*@

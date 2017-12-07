@@ -280,6 +280,7 @@
     <Content Include="Views\Recognitions\Edit.cshtml" />
     <Content Include="Views\Recognitions\Index.cshtml" />
     <Content Include="Views\Recognitions\PleaseLogInToView.cshtml" />
+    <Content Include="Views\Recognitions\Awards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
