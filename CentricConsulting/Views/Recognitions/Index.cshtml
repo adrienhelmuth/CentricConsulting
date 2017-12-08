@@ -1,30 +1,30 @@
 ﻿@model IEnumerable<CentricConsulting.Models.Recognition>
 
 @{
-    ViewBag.Title = "Recognitions";
+    ViewBag.Title = "Index";
 }
 
-<h2>Recognition Feed</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Recognition", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Person Giving Recognition
+            @Html.DisplayNameFor(model => model.Giver.Email)
         </th>
         <th>
-            Person Getting Recognized
+            @Html.DisplayNameFor(model => model.userDetails.Email)
         </th>
         <th>
-            Recognition Date
+            @Html.DisplayNameFor(model => model.CurentDateTime)
         </th>
         <th>
-           Comments
+            @Html.DisplayNameFor(model => model.RecognitionComments)
         </th>
         <th>
-            Award
+            @Html.DisplayNameFor(model => model.award)
         </th>
         <th></th>
     </tr>
@@ -32,10 +32,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Giver.fullName)
+            @Html.DisplayFor(modelItem => item.Giver.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.userDetails.fullName)
+            @Html.DisplayFor(modelItem => item.userDetails.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CurentDateTime)
@@ -46,12 +46,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.award)
         </td>
-        <td>  
-            @Html.ActionLink("Show Individual Recognitions", "Awards", new { id = item.ID, emp = item.userDetails.fullName })
-            
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.EmployeeRecognitionID }) |
+        <td>
+           @Html.ActionLink("Show Individual Recognitions", "Awards", new { id = item.ID, emp = item.userDetails.fullName })
+
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.EmployeeRecognitionID }) |
             @Html.ActionLink("Details", "Details", new { id=item.EmployeeRecognitionID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeRecognitionID }) |*@
+
+
         </td>
     </tr>
 }

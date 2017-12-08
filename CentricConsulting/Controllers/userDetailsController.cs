@@ -42,8 +42,8 @@ namespace CentricConsulting.Controllers
 
 
 
-            // GET: userDetails/Details/5
-            public ActionResult Details(Guid? id)
+        // GET: userDetails/Details/5
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
@@ -144,7 +144,7 @@ namespace CentricConsulting.Controllers
             {
                 return HttpNotFound();
             }
-            
+
 
             Guid memberID;
             Guid.TryParse(User.Identity.GetUserId(), out memberID);
@@ -180,3 +180,4 @@ namespace CentricConsulting.Controllers
         }
     }
 }
+

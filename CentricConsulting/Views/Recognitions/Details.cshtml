@@ -11,23 +11,23 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Person Giving Recognition
+            @Html.DisplayNameFor(model => model.Giver.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Giver.fullName)
+            @Html.DisplayFor(model => model.Giver.Email)
         </dd>
 
         <dt>
-            Person Getting Recognition
+            @Html.DisplayNameFor(model => model.userDetails.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userDetails.fullName)
+            @Html.DisplayFor(model => model.userDetails.Email)
         </dd>
 
         <dt>
-            Recognition Date
+            @Html.DisplayNameFor(model => model.CurentDateTime)
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            Comments
+            @Html.DisplayNameFor(model => model.RecognitionComments)
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            Award
+            @Html.DisplayNameFor(model => model.award)
         </dt>
 
         <dd>

@@ -13,9 +13,10 @@ namespace CentricConsulting.Models
         public int EmployeeRecognitionID { get; set; }
 
         [Display(Name = "Date Recognition is Given")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CurentDateTime { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> CurentDateTime { get; set; }
+
 
         [Required]
         [Display(Name = "Comments")]
