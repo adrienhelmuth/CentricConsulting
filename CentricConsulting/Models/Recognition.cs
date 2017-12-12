@@ -42,7 +42,7 @@ namespace CentricConsulting.Models
         public enum CoreValue
         {
             Commit_to_Delivery_Excellence = 1,
-            Inveset_in_an_Exceptional_Culture = 2,
+            Invest_in_an_Exceptional_Culture = 2,
             Embrace_Integrity_and_Openness = 3,
             Practice_Responsible_Stewardship = 4,
             Strive_to_Innovate = 5,
