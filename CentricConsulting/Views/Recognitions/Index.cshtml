@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Giver.Email)
+            Person Giving Recognition
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userDetails.Email)
+            Person Getting Recognized
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurentDateTime)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RecognitionComments)
+            Comments
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.award)
+            Award
         </th>
         <th></th>
     </tr>
@@ -32,10 +32,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Giver.Email)
+            @Html.DisplayFor(modelItem => item.Giver.fullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.userDetails.Email)
+            @Html.DisplayFor(modelItem => item.userDetails.fullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CurentDateTime)
